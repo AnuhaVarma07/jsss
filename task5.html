@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Builder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .builder, .resume {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .resume {
+      margin-top: 40px;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .section-title {
+      margin-top: 30px;
+      font-weight: 600;
+      color: #555;
+    }
+    #preview h2 {
+      margin-bottom: 10px;
+    }
+    @media print {
+      .builder, button {
+        display: none;
+      }
+      .resume {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 Resume Builder</h1>
+
+  <div class="builder">
+    <input type="text" id="name" placeholder="Full Name" />
+    <input type="text" id="email" placeholder="Email" />
+    <input type="text" id="phone" placeholder="Phone" />
+    <textarea id="summary" placeholder="Professional Summary"></textarea>
+
+    <div class="section-title">Education</div>
+    <textarea id="education" placeholder="E.g. B.Tech in CSE, XYZ University, 2021"></textarea>
+
+    <div class="section-title">Experience</div>
+    <textarea id="experience" placeholder="E.g. Software Intern at ABC Corp, 2022"></textarea>
+
+    <div class="section-title">Skills</div>
+    <textarea id="skills" placeholder="E.g. HTML, CSS, JavaScript, Python"></textarea>
+
+    <button onclick="generateResume()">Preview Resume</button>
+    <button onclick="window.print()">Download PDF</button>
+  </div>
+
+  <div class="resume" id="preview">
+    <h2 id="rName"></h2>
+    <p id="rContact"></p>
+    <p><strong>Summary:</strong> <span id="rSummary"></span></p>
+    <p><strong>Education:</strong><br><span id="rEducation"></span></p>
+    <p><strong>Experience:</strong><br><span id="rExperience"></span></p>
+    <p><strong>Skills:</strong><br><span id="rSkills"></span></p>
+  </div>
+
+  <script>
+    function generateResume() {
+      document.getElementById("rName").innerText = document.getElementById("name").value;
+      document.getElementById("rContact").innerText = document.getElementById("email").value + " | " + document.getElementById("phone").value;
+      document.getElementById("rSummary").innerText = document.getElementById("summary").value;
+      document.getElementById("rEducation").innerText = document.getElementById("education").value;
+      document.getElementById("rExperience").innerText = document.getElementById("experience").value;
+      document.getElementById("rSkills").innerText = document.getElementById("skills").value;
+    }
+  </script>
+</body>
+</html>
